@@ -20,7 +20,50 @@ public class JavaQuestionServiceTest {
 
     @BeforeEach
     public void setQuestionService() {
+        javaQuestionService = new JavaQuestionService();
+        question1 = javaQuestionService.add(new Question("QuestionAboutWrapperClasses",
+                "AnswerAboutWrapperClasses"));
+        question2 = javaQuestionService.add(new Question("QuestionAboutPrimitiveDataTypes",
+                "AnswerAboutPrimitiveDataTypes"));
+        question3 = javaQuestionService.add(new Question("QuestionAboutOOPs",
+                "AnswerAboutOOPs"));
+        actualQuestions = new ArrayList<>(List.of(question1, question2, question3));
+    }
 
+    @Test
+    public void shouldGetAllQuestions() {
+        Collection<Question> expectedQuestions = javaQuestionService.getAll();
+        assertEquals(expectedQuestions, actualQuestions);
+    }
+
+    @Test
+    public void shouldAddQuestion() {
+        Question expectedQuestion = new Question("QuestionAboutWrapperClasses",
+                "AnswerAboutWrapperClasses");
+        JavaQuestionService javaQuestionServiceTest = new JavaQuestionService();
+        javaQuestionServiceTest.add(expectedQuestion);
+        expectedQuestion = javaQuestionServiceTest.getRandomQuestion();
+        assertEquals(expectedQuestion.getQuestion(), actualQuestions.get(0).getQuestion());
+        assertEquals(expectedQuestion.getAnswer(), actualQuestions.get(0).getAnswer());
+    }
+
+    @Test
+    public void shouldRemoveQuestion() {
+        javaQuestionService.remove(question1);
+        Collection<Question> expected = javaQuestionService.getAll();
+        assertEquals(2, expected.size());
+        assertEquals(expected, List.of(question2, question3));
+    }
+
+    @Test
+    public void shouldGetRandomQuestion() {
+        Question actualQuestion = new Question("QuestionAboutWrapperClasses",
+                "AnswerAboutWrapperClasses");
+        JavaQuestionService javaQuestionServiceTest = new JavaQuestionService();
+        javaQuestionServiceTest.add(actualQuestion);
+        Question expectedQuestion = javaQuestionServiceTest.getRandomQuestion();
+        assertEquals(expectedQuestion,actualQuestion);
+    }
 }
 
 

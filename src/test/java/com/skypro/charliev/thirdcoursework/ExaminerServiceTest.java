@@ -23,6 +23,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class ExaminerServiceTest {
 
+    private Question question = new Question("QuestionAboutWrapperClasses",
+            "AnswerAboutWrapperClasses");
 
+    @Mock
+    private JavaQuestionService javaQuestionService;
+
+    @InjectMocks
+    private ExaminerServiceImpl examinerService;
+
+
+    @Test
+    public void shouldGetQuestions() {
+        when(javaQuestionService.getSize()).thenReturn(1);
+        when(javaQuestionService.getRandomQuestion()).thenReturn(question);
+        Collection<Question> expected = Set.of(question);
+        Collection<Question> actual = examinerService.getQuestions(1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetQuestion() {
+        assertThrows(InvalidAmountException.class, () -> examinerService.getQuestions(5));
+    }
 
 }

@@ -10,5 +10,13 @@ import java.util.Collection;
 
 @RestController
 public class ExamController {
+    ExaminerServiceImpl examinerService;
 
+    public ExamController(ExaminerServiceImpl examinerService) {
+        this.examinerService = examinerService;
+    }
+    @GetMapping("exam/java/random/{amount}")
+    Collection<Question> getQuestions(@PathVariable int amount) {
+        return this.examinerService.getQuestions(amount);
+    }
 }
