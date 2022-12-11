@@ -1,0 +1,31 @@
+### Get all java questions
+GET http://localhost:8080/exam/java
+
+### Add java question
+POST http://localhost:8080/exam/java/add?question=QuestionAboutWrapperClasses&answer=AnswerAboutWrapperClasses
+Content-Type: application/json
+
+### Add java question
+POST http://localhost:8080/exam/java/add?question=QuestionAboutPrimitiveDataTypes&answer=AnswerAboutPrimitiveDataTypes
+Content-Type: application/json
+
+### Add java question
+POST http://localhost:8080/exam/java/add?question=QuestionAboutAccessmodifiers&answer=AnswerAboutAccessmodifiers
+Content-Type: application/json
+
+### Add java question
+POST http://localhost:8080/exam/java/add?question=QuestionAboutObjectMethods&answer=AnswerAboutObjectMethods
+Content-Type: application/json
+
+### Add java question
+POST http://localhost:8080/exam/java/add?question=QuestionAboutOOPs&answer=AnswerAboutOOPs
+Content-Type: application/json
+
+
+### Remove java question
+DELETE http://localhost:8080//exam/java/remove?question=QuestionAboutPrimitiveDataTypes&answer=AnswerAboutPrimitiveDataTypes
+
+### Get random java question
+GET http://localhost:8080/exam/java/random/3
+
+
